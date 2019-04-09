@@ -14,6 +14,11 @@ public class GreetingController {
 
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new Greeting(String.format(template, name));
     }
 }
