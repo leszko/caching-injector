@@ -19,14 +19,14 @@ Make sure your Docker Hub repository is public
 
 ## Step 3: Deploy without caching
 
-Change in `deployment-initial.yaml` the Docker Hub `username` to your Docker Hub account and then apply the deployment.
+Change in `deployment-initial.yaml` the Docker Hub account `leszko` to your Docker Hub account and then apply the deployment.
 
 	kubectl apply -f deployment-initial.yaml
 
 
 ## Step 4: Deploy with caching
 
-Change in `deployment-caching.yaml` the Docker Hub `username` to your Docker Hub account and then apply the deployment.
+Change in `deployment-caching.yaml` the Docker Hub account `leszko` to your Docker Hub account and then apply the deployment.
 
 	kubectl apply -f deployment-caching.yaml
 
