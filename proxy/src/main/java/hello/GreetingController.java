@@ -1,5 +1,7 @@
 package hello;
 
+import com.hazelcast.config.Config;
+import com.hazelcast.config.KubernetesConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
@@ -17,22 +19,18 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class GreetingController {
-    private static final String template = "Hello, %s!";
 
-    private HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
+    private HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(kubernetesConfig());
 
-//    @RequestMapping("/greeting")
-//    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        return new Greeting(String.format(template, name));
-//    }
+    private static Config kubernetesConfig() {
+        Config config = new Config();
+        config.getNetworkConfig().getJoin().getMulticastConfig().setEnabled(false);
+        config.getNetworkConfig().getJoin().getKubernetesConfig().setEnabled(true);
+        return config;
+    }
 
     @RequestMapping("/**")
-    public String test(HttpServletRequest request) {
+    public String proxy(HttpServletRequest request) {
         String url = "http://localhost:80" + request.getServletPath() + "?" + request.getQueryString();
         IMap<String, String> map = hazelcastInstance.getMap("cache");
         if (map.containsKey(url)) {

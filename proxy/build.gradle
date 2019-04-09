@@ -27,7 +27,7 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile ('com.hazelcast:hazelcast-all:3.11.2')
+    compile("com.hazelcast:hazelcast-all:3.12-BETA-2")
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('com.jayway.jsonpath:json-path')
 }

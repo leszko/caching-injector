@@ -7,7 +7,7 @@
 	docker build -t <username>/greet .
 	docker push <username>/greet
 
-Make sure your Docker Hub repository is public
+Make sure your Docker Hub repository is public.
 
 ## Step 2: Build networking initializer
 
@@ -15,16 +15,25 @@ Make sure your Docker Hub repository is public
 	docker build -t <username>/init-networking .
 	docker push <username>/init-networking
 
-Make sure your Docker Hub repository is public
+Make sure your Docker Hub repository is public.
 
-## Step 3: Deploy without caching
+## Step 3: Build proxy
+
+	cd proxy
+	./gradlew build
+	docker build -t <username>/caching-proxy .
+	docker push <username>/caching-proxy
+
+Make sure your Docker Hub repository is public.
+
+## Step 4: Deploy without caching
 
 Change in `deployment-initial.yaml` the Docker Hub account `leszko` to your Docker Hub account and then apply the deployment.
 
 	kubectl apply -f deployment-initial.yaml
 
 
-## Step 4: Deploy with caching
+## Step 5: Deploy with caching
 
 Change in `deployment-caching.yaml` the Docker Hub account `leszko` to your Docker Hub account and then apply the deployment.
 

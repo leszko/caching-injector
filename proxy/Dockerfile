@@ -8,4 +8,4 @@ RUN echo "Updating Alpine system" \
 ARG JAR_FILE=build/libs/gs-rest-service-0.1.0.jar
 COPY ${JAR_FILE} app.jar
 
-ENTRYPOINT ["java","-jar","/app.jar","--server.port=80"]
+ENTRYPOINT ["java","-jar","/app.jar","--server.port=8000"]

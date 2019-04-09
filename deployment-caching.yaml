@@ -22,6 +22,11 @@ spec:
                 - NET_ADMIN
             privileged: true
       containers:
+        - name: caching-proxy
+          image: leszko/caching-proxy
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8000
         - name: greet
           image: leszko/greet
           imagePullPolicy: Always
